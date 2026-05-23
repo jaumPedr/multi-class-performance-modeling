@@ -19,8 +19,7 @@ Avaliacao Desempenho/
 │   ├── ExactMVA/
 │   │   ├── algorithm.png         # Pseudocódigo do livro (Capítulo 6)
 │   │   ├── model_data.png        # Dados de exemplo utilizados
-│   │
-│   └── results/                  # Resultados apresentados no livro
+│   │   └── results.png           # Resultados apresentados no livro
 │
 ├── requirements.txt
 ├── README.md
