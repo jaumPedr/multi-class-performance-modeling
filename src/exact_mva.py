@@ -57,7 +57,7 @@ def exact_MVA_InterationLoop( D: list, N: list, K: int, R: int, Z: list, index_N
         N_state = np.array(j)
 
         if not np.all(N_state == 0):
-            results.append(exact_MVA_Script(D, R, K, Z, N_state, states))
+            results.append(exact_MVA_Algorithm(D, R, K, Z, N_state, states))
 
         return results
 
@@ -71,7 +71,7 @@ def exact_MVA_InterationLoop( D: list, N: list, K: int, R: int, Z: list, index_N
     return results
 
 
-def exact_MVA_Script(D: list, R: int, K: int, Z, N_state: list, states: dict):
+def exact_MVA_Algorithm(D: list, R: int, K: int, Z, N_state: list, states: dict):
 
     R_residence = np.zeros((K, R))
     X = np.zeros(R)
