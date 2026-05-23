@@ -10,7 +10,7 @@ Este projeto implementa o algoritmo **Exact Mean Value Analysis (MVA)** para sis
 ## 📁 Estrutura do Projeto
 
 ```text
-Avaliacao Desempenho/
+multi-class-performance-modeling/
 │
 ├── src/
 │   └── exact_mva.py              # Implementação do Exact MVA (Capítulo 6)
