@@ -10,16 +10,19 @@ Este projeto implementa o algoritmo **Exact Mean Value Analysis (MVA)** para sis
 ## 📁 Estrutura do Projeto
 
 ```text
-multi-class-performance-modeling/
+multi-class-performance-models/
+│
+├── reference_materials/
+│   ├── approximate_mva/
+│   └── exact_mva/
 │
 ├── src/
-│   └── exact_mva.py              # Implementação do Exact MVA (Capítulo 6)
-│
-├── reference_material/
-│   ├── ExactMVA/
-│   │   ├── algorithm.png         # Pseudocódigo do livro (Capítulo 6)
-│   │   ├── model_data.png        # Dados de exemplo utilizados
-│   │   └── results.png           # Resultados apresentados no livro
+│   ├── scripts_results/
+│   │   ├── approximate_mva.txt
+│   │   └── exact_mva.txt
+│   │
+│   ├── approximate_mva.py
+│   └── exact_mva.py
 │
 ├── requirements.txt
 ├── README.md
