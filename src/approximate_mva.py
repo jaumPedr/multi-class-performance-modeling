@@ -120,4 +120,6 @@ N = [20, 25]
 
 res = approximate_MVA_Algorithm(D, N, 0.01)
 
-print(json.dumps(res, indent=4))
+with open("./src/scripts_results/approximate_mva.txt", "w") as f:
+    f.write("\n".join(map(str, res)))
+

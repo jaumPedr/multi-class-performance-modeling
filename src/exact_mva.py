@@ -46,10 +46,10 @@ def exact_MVA_Start(D: list, N: list, Z: list | 0 = 0):
 
     j = []
     results = []
-    results = exact_MVA_InterationLoop(D, N, K, R, Z, 0, j, states, results)
+    results = exact_MVA_IterationLoop(D, N, K, R, Z, 0, j, states, results)
     return results
 
-def exact_MVA_InterationLoop( D: list, N: list, K: int, R: int, Z: list, index_N: int, j: list, states : dict, results : list):
+def exact_MVA_IterationLoop( D: list, N: list, K: int, R: int, Z: list, index_N: int, j: list, states : dict, results : list):
 
     #Complete population state generated
     if index_N == len(N):
@@ -64,7 +64,7 @@ def exact_MVA_InterationLoop( D: list, N: list, K: int, R: int, Z: list, index_N
     #Generate all possible states recursively
     for i in range(N[index_N] + 1):
         j.append(i)
-        exact_MVA_InterationLoop(D, N, K, R, Z, index_N + 1, j, states, results)
+        exact_MVA_IterationLoop(D, N, K, R, Z, index_N + 1, j, states, results)
 
         j.pop()
 
@@ -141,4 +141,5 @@ N = [1, 3]
 
 res = exact_MVA_Start(D, N)
 
-print(json.dumps(res, indent=4))
+with open("./src/scripts_results/exact_mva.txt", "w") as f:
+    f.write("\n".join(map(str, res)))
