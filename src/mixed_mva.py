@@ -19,7 +19,7 @@ import json
 import numpy as np
 import exact_mva as exact
 
-def mixed_mva(D: list, N: list, lambda_r: list):
+def mixed_mva(D: list, N: list, lambda_r: list, Z: list | int = 0):
 
     #Convert inputs to numpy arrays
     D = np.array(D, dtype=float)
@@ -58,7 +58,7 @@ def mixed_mva(D: list, N: list, lambda_r: list):
     #Run Exact MVA for closed classes
     D_imput = np.array([C[r]['D_e'] for r in C.keys()]).T
     N_imput = [N[r] for r in C.keys()]
-    mva_Closed_Model_Results = exact.exact_MVA_Start(D_imput, N_imput)[-1]
+    mva_Closed_Model_Results = exact.exact_MVA_Start(D_imput, N_imput, Z)[-1]
     
     X_Closed_Model = mva_Closed_Model_Results['System_Throughput_Per_Classes']
     current_n_Device_Closed_Model = mva_Closed_Model_Results['Average_Number_Of_Customers_At_Devices']
@@ -73,11 +73,23 @@ def mixed_mva(D: list, N: list, lambda_r: list):
     #Mixed residence times
     for k in range(K):
         for r in range(R):
-            if (1 - U_open[k]) == 0: 
-                R_residence[k, r] = 0
 
-            else:
-                R_residence[k, r] = ( D[k, r] * (1 + n_closed[k]) ) / (1 - U_open[k])
+            if r in O.keys():
+                if (1 - U_open[k]) == 0:
+                    R_residence[k, r] = 0
+
+                else:
+                    R_residence[k, r] = (
+                        D[k, r] * (1 + n_closed[k])
+                    ) / (1 - U_open[k])
+
+            elif r in C.keys():
+
+                closed_r_index = list(C.keys()).index(r)
+
+                R_residence[k, r] = (
+                    mva_Closed_Model_Results['Residence_Time'][k][closed_r_index]
+                )
 
     #Open customers at devices
     n_open = np.zeros(K)
@@ -88,31 +100,43 @@ def mixed_mva(D: list, N: list, lambda_r: list):
         else:
             n_open[k] = np.inf
 
-        #Total customers at devices
-    n_total = n_closed + n_open
 
 
     #results
     result = {
-
-        "Open_Classes": {
-            int(r): {
-                "Utilization": O[r]['U'].tolist()
-            }
-            for r in O.keys()
-        },
-        "Closed_Classes": {
-            int(r): {
-                "Equivalent_Demand": C[r]['D_e'].tolist()
-            }
+        "Equivalent_Demand_Per_Closed_Class": {
+            int(r): C[r]['D_e'].tolist()
             for r in C.keys()
         },
         "Open_Utilization_Per_Device": U_open.tolist(),
         "Residence_Time": R_residence.tolist(),
-        "Closed_Model_Throughput": X_Closed_Model.tolist(),
+        "Closed_Model_Throughput": X_Closed_Model,
         "Closed_Customers_Per_Device": n_closed.tolist(),
         "Open_Customers_Per_Device": n_open.tolist(),
-        "Total_Customers_Per_Device": n_total.tolist()
     }
 
     return result
+
+# Test Values - Table 6.11 (Mixed Model)
+
+D = [
+    # Query   Update
+    [0.105,   0.375],   # CPU
+    [0.180,   0.480],   # Disk 1
+    [0.000,   0.240]    # Disk 2
+]
+
+# Query = open class
+# Update = closed class
+N = [0, 1]
+
+# Arrival rates
+lambda_r = [4.09, 0.0]
+
+# Think times per class
+Z = [0, 0]
+
+res = mixed_mva(D, N, lambda_r, Z)
+
+with open("./src/scripts_results/mixed_mva.txt", "w") as f:
+    f.write(json.dumps(res, indent=4))
