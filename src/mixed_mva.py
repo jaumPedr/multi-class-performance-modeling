@@ -117,23 +117,19 @@ def mixed_mva(D: list, N: list, lambda_r: list, Z: list | int = 0):
 
     return result
 
-# Test Values - Table 6.11 (Mixed Model)
+# Test Values 
 
 D = [
-    # Query   Update
-    [0.105,   0.375],   # CPU
-    [0.180,   0.480],   # Disk 1
-    [0.000,   0.240]    # Disk 2
+    
+    [0.105,   0.375],   
+    [0.180,   0.480],   
+    [0.000,   0.240]    
 ]
 
-# Query = open class
-# Update = closed class
 N = [0, 1]
 
-# Arrival rates
 lambda_r = [4.09, 0.0]
 
-# Think times per class
 Z = [0, 0]
 
 res = mixed_mva(D, N, lambda_r, Z)
