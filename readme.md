@@ -1,6 +1,6 @@
-# 📊 Exact MVA - Chapter 6 Implementation
+# 📊 Exact MVA - Implementation
 
-Este projeto implementa o algoritmo **Exact Mean Value Analysis (MVA)** para sistemas fechados multiclasses, conforme apresentado no **Capítulo 6** do livro:
+This project implements the Exact Mean Value Analysis (MVA) algorithm for closed multiclass systems, as presented in Chapter 6 of the book:
 
 > Menascé, D. A., Almeida, V. A., & Dowdy, L. W.  
 > *Capacity Planning and Performance Modeling: From Mainframes to Client-Server Systems*. Prentice Hall, 1994.
