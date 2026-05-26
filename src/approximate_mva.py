@@ -19,7 +19,7 @@
 import json
 import numpy as np
 
-def approximate_MVA_Algorithm(D: list, N: list, err: float, Z: list|0 = 0):
+def approximate_MVA_Algorithm(D: list, N: list, err: float, Z: list | int = 0):
     
     #Convert inputs to numpy arrays
     D = np.array(D, dtype=float)

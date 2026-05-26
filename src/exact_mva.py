@@ -22,7 +22,7 @@
 import json
 import numpy as np
 
-def exact_MVA_Start(D: list, N: list, Z: list | 0 = 0):
+def exact_MVA_Start(D: list, N: list, Z: list | int = 0):
 
     #Convert inputs to numpy arrays
     D = np.array(D, dtype=float)
