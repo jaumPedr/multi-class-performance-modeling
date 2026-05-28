@@ -58,7 +58,8 @@ def mixed_mva(D: list, N: list, lambda_r: list, Z: list | int = 0):
     #Run Exact MVA for closed classes
     D_imput = np.array([C[r]['D_e'] for r in C.keys()]).T
     N_imput = [N[r] for r in C.keys()]
-    mva_Closed_Model_Results = exact.exact_MVA_Start(D_imput, N_imput, Z)[-1]
+    Z_input = [Z[r] for r in C.keys()]
+    mva_Closed_Model_Results = exact.exact_MVA_Start(D_imput, N_imput, Z_input)[-1]
     
     X_Closed_Model = mva_Closed_Model_Results['System_Throughput_Per_Classes']
     current_n_Device_Closed_Model = mva_Closed_Model_Results['Average_Number_Of_Customers_At_Devices']
