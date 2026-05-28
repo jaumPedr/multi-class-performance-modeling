@@ -8,6 +8,8 @@ This project implements the Exact Mean Value Analysis (MVA) algorithm for closed
 
 The project focuses on the implementation of queueing network performance analysis techniques, including Exact MVA, Approximate MVA, and Mixed MVA models.
 
+This repository was developed as an academic project for the Computer Science undergraduate program at the State University of Ceará (UECE).
+
 The `reference_materials/` directory contains the reference pseudocode used during the implementation process, as well as example models, input data, and expected results extracted from the reference materials.
 
 The `src/` directory contains the Python implementations of the algorithms. Each implementation already includes the test input values used in the reference examples, allowing direct execution and validation of the generated results.
