@@ -142,4 +142,4 @@ N = [1, 3]
 res = exact_MVA_Start(D, N)
 
 with open("./src/scripts_results/exact_mva.txt", "w") as f:
-    f.write("\n".join(map(str, res)))
+    f.write(json.dumps(res, indent=4))
